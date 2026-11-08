@@ -1069,7 +1069,7 @@ ul.plain{margin:.3em 0;padding-left:1.2em}
 //# sourceMappingURL=leaflet.js.map</script>
 <script>/*@@DATA_START@@*/
 var META = {
-  version: "v1.0", generated: "2026-11-08", verified: "2026-11-08",
+  version: "v1.1", generated: "2026-11-08", verified: "2026-11-08",
   title: "仙台進出・平泉・松島・山寺 5 日",
   eyebrow: "2026/11/17（二）– 11/21（六）・2 大人・大眾運輸",
   route: "仙台（連住 4 晚）為基地，放射狀日歸：平泉世界遺產 → 松島日本三景＋円通院夜楓 → 山寺 1015 段＋Nikka 蒸餾所 → 瑞鳳殿・青葉山後返台"
@@ -1413,7 +1413,8 @@ var MAPS=[];
 function MapView(el,cfg){this.el=el;this.cfg=cfg;this.items=cfg.items;this.day=cfg.day||null;this.inited=false;this.sel=null;this.lod=cfg.lod||3;MAPS.push(this)}
 MapView.prototype.init=function(){
   if(this.inited)return;this.inited=true;var me=this;
-  var m=this.map=L.map(this.el,{zoomControl:false,zoomSnap:.25,zoomDelta:.5,attributionControl:true,tap:true});
+  var m=this.map=L.map(this.el,{zoomControl:false,zoomSnap:.25,zoomDelta:.5,attributionControl:true,tap:true,scrollWheelZoom:false});
+  m.on("click focus",function(){m.scrollWheelZoom.enable()});m.on("mouseout blur",function(){m.scrollWheelZoom.disable()});
   m.attributionControl.setPrefix(false);
   m.createPane("coast");m.getPane("coast").style.zIndex=150;
   L.polygon(COAST,{pane:"coast",renderer:L.svg({pane:"coast"}),className:"coast-sea",interactive:false,stroke:false,fillOpacity:1}).addTo(m);
